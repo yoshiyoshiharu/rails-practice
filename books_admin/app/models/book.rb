@@ -14,7 +14,7 @@ class Book < ApplicationRecord
   # バリデーション
   validates :name, presence: true
   validates :name, length: { maximum: 25 }
-  validates :price, numericity: { greater_than_or_equal_to: 0 } # price >= 0
+  validates :price, numericality: { greater_than_or_equal_to: 0 } # price >= 0
 
   # 独自バリデーション
   validate do |book|

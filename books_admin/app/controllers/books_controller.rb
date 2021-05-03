@@ -5,11 +5,19 @@ class BooksController < ApplicationController
   # 親クラスなどで定義したフックをスキップしたいときはskip_before_actionなどとする
 
   def show
-    # @book = Book.find(params[:id]) この共通処理をフックでDRYにする
     respond_to do |format|
-      format.html
-      format.json
+      format.html { redirect_to profile_path } # prefix_pathでパスを生成できる
+      format.json { render json: @book } # @bookをjsonで返す
     end
+  end
+
+  def show
+    # @book = Book.find(params[:id]) この共通処理をフックでDRYにする
+    render :show # これでapp/views/コントローラ名/アクション名.html.erbを探す
+  end
+
+  # renderは省略できる
+  def show
   end
 
   def destroy
